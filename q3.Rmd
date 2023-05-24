@@ -1,0 +1,37 @@
+---
+title: "q3"
+author: "Jie Chen, 20878217"
+date: "2/2/2023"
+output: pdf_document
+---
+
+```{r}
+iris = read.csv("Iris.csv")
+DrawBoxPlot <- function(df){
+  n <- ncol(df)
+  plot(NA,
+     xaxt="n",
+     type = "n",
+     xlab = "",
+     ylab = "",
+     main = "",
+     xlim = c(0.5, n+0.5),
+     ylim = range(df))
+  axis(side = 1, at = 1:n, labels = colnames(df))
+  for (i in 1:n){
+    stat = boxplot.stats(df[,i])
+    out = stat$out
+    xx = i
+    lines(c(xx-0.2, xx+0.2), rep(stat$stats[1],2))
+    lines(c(xx-0.2, xx+0.2), rep(stat$stats[5],2))
+    lines(c(xx, xx), stat$stats[c(1,2)],lty = 2)
+    lines(c(xx, xx), stat$stats[c(4,5)],lty = 2)
+    polygon(c(xx-0.4, xx-0.4, xx+0.4, xx+0.4), stat$stats[c(2,4,4,2)], col = "grey")
+    lines(c(xx-0.39, xx+0.39), rep(stat$stats[3],2), lwd = 3)
+    points(rep(xx,length(out)), out)
+  }
+}
+
+DrawBoxPlot(iris[,1:4])
+```
+
