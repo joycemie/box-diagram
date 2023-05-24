@@ -1,9 +1,4 @@
----
-title: "q3"
-author: "Jie Chen, 20878217"
-date: "2/2/2023"
-output: pdf_document
----
+
 
 ```{r}
 iris = read.csv("Iris.csv")
